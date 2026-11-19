@@ -12,7 +12,9 @@ export const siteConfig = {
   defaultTitle: 'RidgeForm — Architectural & Commercial Roofing Systems',
   defaultDescription:
     'RidgeForm delivers precision-engineered metal roofing, residential roof replacements, and structural commercial waterproofing backed by long-term workmanship warranties.',
-  ogImage: '/images/hero-roof.jpg',
+  ogImage: '/images/photos/hero-roof.jpg',
+  copyrightName: 'aldikurniawan',
+  copyrightUrl: 'https://github.com/aldikurniawan19',
   socials: [
     { label: 'Facebook', href: 'https://facebook.com/' },
     { label: 'X', href: 'https://x.com/' },

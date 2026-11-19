@@ -86,7 +86,16 @@ const socialIconMap: Record<string, IconName> = {
     <div class="rf-footer-wordmark-row">
       <BrandMark variant="light" size="lg" />
       <p class="rf-small" style="color: rgba(255, 255, 255, 0.72);">
-        © 2026 {siteConfig.legalName}. Built cleanly with Astro.
+        Copyright © 2026{' '}
+        <a
+          href={siteConfig.copyrightUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="rf-footer-link"
+          style="color: #fff; font-weight: 600;"
+        >
+          {siteConfig.copyrightName}
+        </a>
       </p>
     </div>
   </div>
