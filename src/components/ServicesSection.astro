@@ -1,0 +1,85 @@
+---
+import Icons from './Icons.astro';
+import { services } from '../data/services';
+---
+<section class="rf-section rf-section-pt-0">
+  <div class="rf-container">
+    <div class="rf-section-header">
+      <div class="rf-section-header-main">
+        <div data-reveal class="rf-kicker">
+          <span class="rf-kicker-dot"></span>
+          <span>OUR CORE SERVICES</span>
+        </div>
+        <h2 data-split-reveal class="rf-h2">
+          Complete Roofing Solutions Under One Structure
+        </h2>
+      </div>
+      <div data-reveal data-delay="160" class="rf-section-header-aside">
+        <p class="rf-lead">
+          Engineered metal, tile, and waterproofing assemblies built for homes and commercial facilities.
+        </p>
+      </div>
+    </div>
+
+    <div data-reveal data-delay="220" class="rf-carousel" data-carousel>
+      <div class="rf-carousel-viewport">
+        <div class="rf-carousel-track" data-carousel-track>
+          {services.map((service) => (
+            <div class="rf-carousel-slide" data-carousel-slide>
+              <article class="rf-service-card">
+                <div class="rf-service-meta">
+                  <p class="rf-service-index">
+                    {service.number}<span>/{service.total}</span>
+                  </p>
+                  <a href={`/services/${service.slug}`} class="rf-service-title-link">
+                    <h3 class="rf-h4">{service.title}</h3>
+                  </a>
+                </div>
+
+                <div class="rf-service-media">
+                  <img src={service.image} alt={service.title} loading="lazy" />
+                  <div class="rf-service-stat">
+                    <div class="rf-service-stat-num" data-counter={service.statNumber}>
+                      {service.statNumber}
+                    </div>
+                    <p class="rf-small" style="color: var(--color-ink); font-weight: 500;">
+                      {service.statLabel}
+                    </p>
+                  </div>
+                </div>
+
+                <div class="rf-service-body">
+                  <p class="rf-service-summary">{service.summary}</p>
+                  <div>
+                    <p class="rf-highlights-title">Key Capabilities</p>
+                    <ul class="rf-highlights-list">
+                      {service.highlights.map((item) => (
+                        <li>
+                          <Icons name="check-star" size={14} />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <a href={`/services/${service.slug}`} class="rf-btn rf-btn-primary rf-btn-primary-dark">
+                      <span>View Service</span>
+                      <Icons name="arrow-right" size={16} />
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="rf-carousel-controls">
+        <button type="button" class="rf-circle-nav" data-carousel-prev aria-label="Previous service">
+          <Icons name="arrow-left" size={18} />
+        </button>
+        <button type="button" class="rf-circle-nav" data-carousel-next aria-label="Next service">
+          <Icons name="arrow-right" size={18} />
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,41 @@
+---
+import { works } from '../data/works';
+---
+<section id="section_works" class="rf-section rf-section-dark">
+  <div class="rf-container">
+    <div class="rf-section-header">
+      <div class="rf-section-header-main">
+        <div data-reveal class="rf-kicker rf-kicker-light">
+          <span class="rf-kicker-dot"></span>
+          <span>SECTORS WE SERVE</span>
+        </div>
+        <h2 data-split-reveal class="rf-h2">
+          Engineered Systems. Tailored for Every Property Type.
+        </h2>
+      </div>
+      <div data-reveal data-delay="160" class="rf-section-header-aside">
+        <p class="rf-lead" style="color: var(--color-text-light-muted);">
+          Dedicated project planning across family neighborhoods, corporate estates, and general contractor builds.
+        </p>
+      </div>
+    </div>
+
+    <div class="rf-works-stack">
+      {works.map((work, idx) => (
+        <article data-reveal data-delay={String(idx * 70)} class="rf-work-row">
+          <a href={`/work/${work.slug}`} aria-label={work.title} class="rf-work-img-wrap">
+            <img src={work.image} alt={work.title} loading="lazy" />
+          </a>
+
+          <div>
+            <span class="rf-work-pill">{work.category}</span>
+            <a href={`/work/${work.slug}`}>
+              <h3 class="rf-h4 rf-work-title">{work.title}</h3>
+            </a>
+            <p class="rf-lead rf-work-summary">{work.summary}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

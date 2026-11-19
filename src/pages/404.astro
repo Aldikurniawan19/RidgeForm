@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icons from '../components/Icons.astro';
+import { siteConfig } from '../data/site';
+---
+<BaseLayout
+  title={`Page Not Found || ${siteConfig.legalName}`}
+  canonicalPath="/404/"
+  headerVariant="solid"
+>
+  <section class="rf-section">
+    <div class="rf-container">
+      <div class="rf-utility-box">
+        <div class="rf-404-num">4<span>0</span>4</div>
+        <h1 class="rf-h2" style="margin-top: 0.75rem;">Page Not Found</h1>
+        <p class="rf-lead" style="margin-top: 0.85rem; margin-bottom: 2rem;">
+          The page you are looking for doesn’t exist or may have moved to another URL.
+        </p>
+        <a href="/" class="rf-btn rf-btn-primary rf-btn-primary-dark">
+          <span>Back to Home</span>
+          <Icons name="arrow-right" size={16} />
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

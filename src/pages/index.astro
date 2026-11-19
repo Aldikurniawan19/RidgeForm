@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import AboutSection from '../components/AboutSection.astro';
+import ServicesSection from '../components/ServicesSection.astro';
+import PartnersSection from '../components/PartnersSection.astro';
+import ExpertiseSection from '../components/ExpertiseSection.astro';
+import ProcessSection from '../components/ProcessSection.astro';
+import WhyChooseSection from '../components/WhyChooseSection.astro';
+import WorksSection from '../components/WorksSection.astro';
+import TestimonialsSection from '../components/TestimonialsSection.astro';
+import FaqSection from '../components/FaqSection.astro';
+import CtaSection from '../components/CtaSection.astro';
+import { faqItems } from '../data/company';
+import { siteConfig } from '../data/site';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: siteConfig.defaultTitle,
+  description: siteConfig.defaultDescription,
+  url: siteConfig.url,
+  inLanguage: 'en',
+  mainEntity: {
+    '@type': 'FAQPage',
+    mainEntity: faqItems.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  },
+};
+---
+<BaseLayout
+  title={siteConfig.defaultTitle}
+  description={siteConfig.defaultDescription}
+  canonicalPath="/"
+  jsonLd={jsonLd}
+>
+  <Hero />
+  <AboutSection />
+  <ServicesSection />
+  <PartnersSection />
+  <ExpertiseSection />
+  <ProcessSection />
+  <WhyChooseSection />
+  <WorksSection />
+  <TestimonialsSection />
+  <FaqSection />
+  <CtaSection topPadding={false} />
+</BaseLayout>

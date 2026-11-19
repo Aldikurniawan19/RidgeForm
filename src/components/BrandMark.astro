@@ -1,0 +1,42 @@
+---
+interface Props {
+  variant?: 'light' | 'dark';
+  showText?: boolean;
+  size?: 'sm' | 'lg';
+}
+
+import { siteConfig } from '../data/site';
+
+const { variant = 'light', showText = true, size = 'sm' } = Astro.props;
+const textColor = variant === 'light' ? '#ffffff' : '#0b0c0e';
+---
+<span class:list={['rf-brand-lockup', `rf-brand-${size}`]}>
+  <svg
+    class="rf-brand-emblem"
+    viewBox="0 0 36 36"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+  >
+    <rect width="36" height="36" rx="9" fill="#EB6B2D" />
+    <path
+      d="M8.5 20.5L18 11.5L27.5 20.5"
+      stroke="#0B0C0E"
+      stroke-width="2.6"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M12.5 25.5L18 20L23.5 25.5"
+      stroke="#FFFFFF"
+      stroke-width="2.4"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+  {showText && (
+    <span class="rf-brand-wordmark" style={`color: ${textColor}`}>
+      {siteConfig.brandName}
+    </span>
+  )}
+</span>

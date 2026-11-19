@@ -1,0 +1,44 @@
+---
+import Icons from './Icons.astro';
+import { aboutOverview } from '../data/company';
+---
+<section class="rf-section">
+  <div class="rf-container">
+    <div data-reveal data-delay="0" class="rf-about-top">
+      <div class="rf-kicker">
+        <span class="rf-kicker-dot"></span>
+        <span>{aboutOverview.kicker}</span>
+      </div>
+      <h2 data-scroll-words class="rf-about-statement">{aboutOverview.statement}</h2>
+    </div>
+
+    <div data-reveal data-delay="120" class="rf-about-bottom">
+      <div class="rf-rating-block">
+        <div class="rf-avatar-stack">
+          {aboutOverview.avatars.map((avatar) => (
+            <img src={avatar.src} alt={avatar.alt} loading="lazy" class="rf-avatar" />
+          ))}
+        </div>
+        <div>
+          <div class="rf-stars" aria-label="5 out of 5 stars">
+            {Array.from({ length: 5 }).map(() => (
+              <Icons name="star" size={15} />
+            ))}
+          </div>
+          <p class="rf-small" style="color: var(--color-ink); font-weight: 500; margin-top: 0.3rem;">
+            {aboutOverview.ratingText}
+          </p>
+        </div>
+      </div>
+
+      <div class="rf-stats-row">
+        {aboutOverview.stats.map((stat) => (
+          <div class="rf-stat-item">
+            <div class="rf-stat-value" data-counter={stat.number}>{stat.number}</div>
+            <p class="rf-small" style="margin-top: 0.35rem;">{stat.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

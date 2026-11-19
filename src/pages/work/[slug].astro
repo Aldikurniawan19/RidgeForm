@@ -1,0 +1,179 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CtaSection from '../../components/CtaSection.astro';
+import Icons from '../../components/Icons.astro';
+import { works, type WorkItem } from '../../data/works';
+import { siteConfig } from '../../data/site';
+
+export function getStaticPaths() {
+  return works.map((work) => ({
+    params: { slug: work.slug },
+    props: { work },
+  }));
+}
+
+interface Props {
+  work: WorkItem;
+}
+
+const { work } = Astro.props;
+
+const impactMetrics = [
+  { icon: 'home' as const, title: '38+ Properties Restored', text: 'Complete multi-layer weatherproofing upgrades finished on budget.' },
+  { icon: 'sun' as const, title: '32% Solar Attenuation', text: 'Reflective coating & ventilated ridge baffling cool interior ceilings.' },
+  { icon: 'clock' as const, title: '100% On-Time Delivery', text: 'Milestone sequencing coordinated transparently with property stakeholders.' },
+  { icon: 'shield-check' as const, title: 'Zero Safety Incidents', text: 'Fall protection, anchored staging, and daily clean site sweeps.' },
+  { icon: 'award' as const, title: '15+ Years Mastery', text: 'Dedicated metalwork & structural roofing specialists on every crew.' },
+  { icon: 'badge-check' as const, title: '98% Client Approval', text: 'Post-completion walk-through sign-off with digital photo logs.' },
+];
+---
+<BaseLayout
+  title={`${work.title} || ${siteConfig.legalName}`}
+  description={work.summary}
+  canonicalPath={`/work/${work.slug}/`}
+>
+  <section class="rf-section rf-section-dark" style="padding-top: 8.5rem; padding-bottom: 4rem;">
+    <div class="rf-container">
+      <div class="rf-section-header" style="margin-bottom: 0;">
+        <div class="rf-section-header-main">
+          <div data-reveal class="rf-kicker rf-kicker-pill">
+            <span class="rf-kicker-dot"></span>
+            <span>{work.category}</span>
+          </div>
+          <h1 data-reveal data-delay="80" class="rf-h2" style="color: #fff;">{work.title}</h1>
+        </div>
+        <div data-reveal data-delay="160" class="rf-section-header-aside">
+          <p class="rf-lead" style="color: var(--color-text-light-muted);">{work.summary}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rf-section" style="padding-top: 3rem;">
+    <div class="rf-container">
+      <div style="border-radius: var(--radius-md); overflow: hidden; max-height: 36rem;">
+        <img src={work.bannerImage} alt={work.title} loading="eager" style="width: 100%; height: 100%; object-fit: cover;" />
+      </div>
+
+      <div class="rf-four-grid" style="margin-top: 2rem;">
+        {work.stats.map((stat, idx) => (
+          <div data-reveal data-delay={String(idx * 70)} class="rf-why-card" style="gap: 1.75rem; padding: 1.5rem;">
+            <p class="rf-small" style="font-weight: 600;">{stat.label}</p>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="rf-h4" data-counter={stat.value}>{stat.value}</span>
+              <Icons name="arrow-up-right" size={22} />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="rf-section rf-section-pt-0">
+    <div class="rf-container">
+      <div class="rf-purpose-grid">
+        {work.galleryImages.map((src, idx) => (
+          <div data-reveal data-delay={String(idx * 80)} style="border-radius: var(--radius-md); overflow: hidden; aspect-ratio: 16/10;">
+            <img src={src} alt={`${work.title} progress ${idx + 1}`} loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" />
+          </div>
+        ))}
+      </div>
+
+      <div style="margin-top: 4rem;">
+        <div style="padding-bottom: 1rem; border-bottom: 1px solid var(--color-border-light); margin-bottom: 2rem;">
+          <h2 class="rf-h5">Project Overview</h2>
+        </div>
+        <div class="rf-journey-row" style="grid-template-columns: 16rem 1fr;">
+          <img src="/images/photos/expertise-metal.jpg" alt="Architectural standing-seam finish" loading="lazy" style="border-radius: var(--radius-md);" />
+          <p class="rf-h4" style="font-weight: 500; line-height: 1.4;">{work.overviewHeading}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rf-section rf-section-stone">
+    <div class="rf-container" style="display: flex; flex-direction: column; gap: 4.5rem;">
+      <div class="rf-two-col-sticky" style="align-items: center;">
+        <div>
+          <div data-reveal class="rf-kicker">
+            <span class="rf-kicker-dot"></span>
+            <span>THE CHALLENGE</span>
+          </div>
+          <h2 data-reveal data-delay="80" class="rf-h3">{work.challengeTitle}</h2>
+          <p data-reveal data-delay="160" style="margin-top: 1rem;">{work.challengeBody}</p>
+        </div>
+        <div data-reveal data-delay="120" style="border-radius: var(--radius-md); overflow: hidden; aspect-ratio: 16/10;">
+          <img src="/images/photos/cta-roof.jpg" alt={work.challengeTitle} loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" />
+        </div>
+      </div>
+
+      <div class="rf-two-col-sticky" style="align-items: center;">
+        <div data-reveal style="border-radius: var(--radius-md); overflow: hidden; aspect-ratio: 16/10;">
+          <img src="/images/photos/roofer-crew.jpg" alt={work.approachTitle} loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" />
+        </div>
+        <div>
+          <div data-reveal class="rf-kicker">
+            <span class="rf-kicker-dot"></span>
+            <span>OUR APPROACH</span>
+          </div>
+          <h2 data-reveal data-delay="80" class="rf-h3">{work.approachTitle}</h2>
+          <p data-reveal data-delay="160" style="margin-top: 1rem;">{work.approachBody}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rf-section rf-section-dark">
+    <div class="rf-container">
+      <div class="rf-two-col-sticky">
+        <div class="rf-faq-sticky">
+          <div data-reveal class="rf-kicker rf-kicker-light">
+            <span class="rf-kicker-dot"></span>
+            <span>PROJECT IMPACT</span>
+          </div>
+          <h2 data-reveal data-delay="80" class="rf-h2">Results Beyond the Roofline</h2>
+          <p data-reveal data-delay="160" class="rf-lead" style="color: var(--color-text-light-muted); margin-top: 1rem;">
+            Measurable structural performance, thermal comfort gains, and dependable warranties verified across every installation.
+          </p>
+        </div>
+
+        <div class="rf-values-grid">
+          {impactMetrics.map((metric, idx) => (
+            <article data-reveal data-delay={String((idx % 2) * 70)} class="rf-dark-feature-card">
+              <div class="rf-icon-box" style="background: var(--color-accent); color: var(--color-accent-ink); margin-bottom: 2rem;">
+                <Icons name={metric.icon} size={20} />
+              </div>
+              <h3 class="rf-h5" style="color: #fff; margin-bottom: 0.45rem;">{metric.title}</h3>
+              <p class="rf-small" style="color: var(--color-text-light-muted);">{metric.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rf-section">
+    <div class="rf-container">
+      <div class="rf-section-header-center">
+        <h2 data-reveal class="rf-h2">Project Transformation Gallery</h2>
+      </div>
+
+      <div class="rf-gallery-grid">
+        {work.beforeAfterPairs.map((pair, idx) => (
+          <div data-reveal data-delay={String((idx % 2) * 80)} class="rf-before-after">
+            <div class="rf-before-after-half">
+              <span class="rf-tag-badge">Before</span>
+              <img src={pair.before} alt="Pre-installation condition" loading="lazy" />
+            </div>
+            <div class="rf-before-after-half">
+              <span class="rf-tag-badge">After</span>
+              <img src={pair.after} alt="Completed roof transformation" loading="lazy" />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaSection />
+</BaseLayout>

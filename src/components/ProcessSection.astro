@@ -1,0 +1,39 @@
+---
+import { processSteps } from '../data/company';
+---
+<section class="rf-section">
+  <div class="rf-container">
+    <div class="rf-section-header">
+      <div class="rf-section-header-main">
+        <div data-reveal class="rf-kicker">
+          <span class="rf-kicker-dot"></span>
+          <span>OUR WORKFLOW</span>
+        </div>
+        <h2 data-split-reveal class="rf-h2">
+          A Process Designed for Precision
+        </h2>
+      </div>
+      <div data-reveal data-delay="160" class="rf-section-header-aside">
+        <p class="rf-lead">From thermal inspection to warranty handover, every milestone is documented.</p>
+      </div>
+    </div>
+
+    <div class="rf-process-grid">
+      {processSteps.map((step, idx) => (
+        <article data-reveal data-delay={String(idx * 90)} tabindex="0" class="rf-process-card">
+          <img src={step.image} alt={step.title} loading="lazy" class="rf-process-img" />
+          <div class="rf-process-overlay" aria-hidden="true"></div>
+          <span class="rf-process-badge">{step.step}</span>
+          <div class="rf-process-content">
+            <h3 class="rf-h5 rf-process-title">{step.title}</h3>
+            <div class="rf-process-summary-wrap">
+              <div class="rf-process-summary-inner">
+                <p class="rf-process-summary">{step.summary}</p>
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

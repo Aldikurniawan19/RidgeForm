@@ -1,0 +1,93 @@
+---
+import BrandMark from './BrandMark.astro';
+import Icons from './Icons.astro';
+import type { IconName } from '../data/icons';
+import { siteConfig } from '../data/site';
+
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+const socialIconMap: Record<string, IconName> = {
+  Facebook: 'facebook',
+  X: 'x',
+  Instagram: 'instagram',
+  LinkedIn: 'linkedin',
+};
+---
+<footer class="rf-footer">
+  <div class="rf-container">
+    <div class="rf-footer-top">
+      <div class="rf-footer-brand">
+        <a href="/" aria-label={`${siteConfig.brandName} home`}>
+          <BrandMark variant="light" />
+        </a>
+        <p class="rf-lead" style="color: var(--color-text-light-muted);">
+          Architectural metal roofing, residential replacements, and weatherproof commercial systems engineered to endure.
+        </p>
+        <div class="rf-socials">
+          {siteConfig.socials.map((soc) => (
+            <a
+              aria-label={soc.label}
+              href={soc.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="rf-social-btn"
+            >
+              <Icons name={socialIconMap[soc.label] || 'x'} size={16} />
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div class="rf-footer-cols">
+        <div>
+          <p class="rf-footer-heading">Navigation</p>
+          <div class="rf-footer-links">
+            <a href="/" class:list={['rf-footer-link', { 'is-active': pathname === '/' }]}>Home</a>
+            <a href="/about" class:list={['rf-footer-link', { 'is-active': pathname === '/about' }]}>About Us</a>
+            <a href="/portfolio" class:list={['rf-footer-link', { 'is-active': pathname === '/portfolio' }]}>Services</a>
+            <a href="/contact" class:list={['rf-footer-link', { 'is-active': pathname === '/contact' }]}>Contact</a>
+            <a href="/services/commercial-roofing" class="rf-footer-link">Service Details</a>
+            <a href="/work/residential-homeowners-weatherproof-roofs" class="rf-footer-link">Project Case Studies</a>
+          </div>
+        </div>
+
+        <div>
+          <p class="rf-footer-heading">Resources</p>
+          <div class="rf-footer-links">
+            <a href="/style-guide" class:list={['rf-footer-link', { 'is-active': pathname === '/style-guide' }]}>Style Guide</a>
+            <a href="/404" class="rf-footer-link">404 Page</a>
+            <a href="/401" class="rf-footer-link">Client Portal Demo</a>
+          </div>
+        </div>
+
+        <div>
+          <p class="rf-footer-heading">Contact</p>
+          <div class="rf-footer-contact-group">
+            <div>
+              <p class="rf-footer-contact-label">Email</p>
+              <a href={`mailto:${siteConfig.email}`} class="rf-footer-link" style="color: #fff;">
+                {siteConfig.email}
+              </a>
+            </div>
+            <div>
+              <p class="rf-footer-contact-label">Phone</p>
+              <a href={`tel:${siteConfig.phoneHref}`} class="rf-footer-link" style="color: #fff;">
+                {siteConfig.phoneDisplay}
+              </a>
+            </div>
+            <div>
+              <p class="rf-footer-contact-label">Office</p>
+              <p class="rf-small" style="color: #fff;">{siteConfig.addressLine1}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rf-footer-wordmark-row">
+      <BrandMark variant="light" size="lg" />
+      <p class="rf-small" style="color: rgba(255, 255, 255, 0.72);">
+        © 2026 {siteConfig.legalName}. Built cleanly with Astro.
+      </p>
+    </div>
+  </div>
+</footer>

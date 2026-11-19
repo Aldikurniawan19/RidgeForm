@@ -1,0 +1,50 @@
+---
+import { faqItems } from '../data/company';
+
+export { faqItems };
+---
+<section class="rf-section">
+  <div class="rf-container">
+    <div class="rf-faq-layout">
+      <div class="rf-faq-sticky">
+        <div data-reveal class="rf-kicker">
+          <span class="rf-kicker-dot"></span>
+          <span>FAQ</span>
+        </div>
+        <h2 data-split-reveal class="rf-h2">Frequently Asked Questions</h2>
+        <p data-reveal data-delay="160" style="margin-top: 1rem;">
+          Clear answers covering structural inspections, installation timelines, energy savings, and multi-decade warranties.
+        </p>
+      </div>
+
+      <div class="rf-faq-list">
+        {faqItems.map((faq, idx) => (
+          <div
+            data-reveal
+            data-delay={String(idx * 50)}
+            data-faq-item
+            class:list={['rf-faq-item', { 'is-open': idx === 0 }]}
+          >
+            <button
+              type="button"
+              class="rf-faq-trigger"
+              data-faq-trigger
+              aria-expanded={idx === 0 ? 'true' : 'false'}
+            >
+              <span>{faq.question}</span>
+              <span class="rf-faq-plus" aria-hidden="true">
+                <span class="rf-faq-bar"></span>
+                <span class="rf-faq-bar rf-faq-bar-v"></span>
+              </span>
+            </button>
+            <div class="rf-faq-answer">
+              <div class="rf-faq-answer-inner">
+                <p>{faq.answer}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

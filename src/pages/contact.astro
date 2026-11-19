@@ -1,0 +1,157 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icons from '../components/Icons.astro';
+import { services } from '../data/services';
+import { siteConfig } from '../data/site';
+---
+<BaseLayout
+  title={`Contact || ${siteConfig.legalName}`}
+  description={`Schedule a free roof inspection or request a transparent roofing estimate from ${siteConfig.brandName}.`}
+  canonicalPath="/contact/"
+>
+  <section class="rf-page-hero rf-page-hero-compact rf-section-dark">
+    <div class="rf-container">
+      <div class="rf-hero-grid">
+        <div class="rf-hero-left">
+          <div data-reveal class="rf-kicker rf-kicker-pill">
+            <span class="rf-kicker-dot"></span>
+            <span>CONTACT {siteConfig.brandName.toUpperCase()}</span>
+          </div>
+          <h1 data-reveal data-delay="80" class="rf-h1">
+            Let’s Protect What Matters Most.
+          </h1>
+        </div>
+        <div style="max-width: 24rem;">
+          <p data-reveal data-delay="160" class="rf-lead" style="color: var(--color-text-light-muted);">
+            From complimentary diagnostic roof inspections to rapid storm repairs and full metal installations, our team responds quickly.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rf-section">
+    <div class="rf-container">
+      <div class="rf-contact-split">
+        <div data-reveal class="rf-form-box" data-form-wrapper>
+          <h2 class="rf-h4" style="margin-bottom: 1.5rem;">Request a Free Estimate</h2>
+
+          <form data-static-form>
+            <div class="rf-form-row">
+              <div class="rf-field">
+                <label for="first-name">First Name</label>
+                <input id="first-name" name="firstName" type="text" placeholder="e.g. Jordan" required class="rf-input" />
+              </div>
+              <div class="rf-field">
+                <label for="last-name">Last Name</label>
+                <input id="last-name" name="lastName" type="text" placeholder="Miller" required class="rf-input" />
+              </div>
+            </div>
+
+            <div class="rf-form-row">
+              <div class="rf-field">
+                <label for="email">Email Address</label>
+                <input id="email" name="email" type="email" placeholder={siteConfig.email} required class="rf-input" />
+              </div>
+              <div class="rf-field">
+                <label for="service-select">Service Needed</label>
+                <select id="service-select" name="service" class="rf-input">
+                  <option value="">Select a service</option>
+                  {services.map((s) => (
+                    <option value={s.title}>{s.title}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <div class="rf-field">
+              <label for="message">Project Details</label>
+              <textarea
+                id="message"
+                name="message"
+                placeholder="Tell us about your roof type, property location, or any leak concerns..."
+                class="rf-input"
+              ></textarea>
+            </div>
+
+            <input
+              type="text"
+              name="_gotcha"
+              tabindex="-1"
+              autocomplete="off"
+              aria-hidden="true"
+              style="position: absolute; left: -9999px; width: 1px; height: 1px;"
+            />
+
+            <button type="submit" class="rf-btn rf-btn-primary rf-btn-primary-dark">
+              <span>Send Message</span>
+              <Icons name="arrow-right" size={16} />
+            </button>
+          </form>
+
+          <div data-form-success hidden class="rf-success-banner">
+            Thank you! Your inspection request has been logged—our specialist team will follow up shortly.
+          </div>
+        </div>
+
+        <div data-reveal data-delay="120" class="rf-contact-side-img">
+          <img
+            src="/images/photos/contact-house.jpg"
+            alt="Suburban house with well-maintained sloped roof tiles under blue sky"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <div class="rf-contact-info-grid">
+        <div data-reveal class="rf-contact-info-card">
+          <div class="rf-icon-box">
+            <Icons name="phone" size={20} />
+          </div>
+          <div>
+            <h3 class="rf-h5" style="margin-bottom: 0.35rem;">Phone</h3>
+            <a href={`tel:${siteConfig.phoneHref}`} class="rf-small" style="font-weight: 600;">
+              {siteConfig.phoneDisplay}
+            </a>
+          </div>
+        </div>
+
+        <div data-reveal data-delay="80" class="rf-contact-info-card">
+          <div class="rf-icon-box">
+            <Icons name="mail" size={20} />
+          </div>
+          <div>
+            <h3 class="rf-h5" style="margin-bottom: 0.35rem;">Email</h3>
+            <a href={`mailto:${siteConfig.email}`} class="rf-small" style="font-weight: 600;">
+              {siteConfig.email}
+            </a>
+          </div>
+        </div>
+
+        <div data-reveal data-delay="160" class="rf-contact-info-card">
+          <div class="rf-icon-box">
+            <Icons name="clock" size={20} />
+          </div>
+          <div>
+            <h3 class="rf-h5" style="margin-bottom: 0.35rem;">Operating Hours</h3>
+            <p class="rf-small">
+              Mon - Fri: 7:00 AM - 6:00 PM<br />24/7 Emergency Dispatch
+            </p>
+          </div>
+        </div>
+
+        <div data-reveal data-delay="240" class="rf-contact-info-card">
+          <div class="rf-icon-box">
+            <Icons name="map-pin" size={20} />
+          </div>
+          <div>
+            <h3 class="rf-h5" style="margin-bottom: 0.35rem;">Office Location</h3>
+            <p class="rf-small">
+              {siteConfig.addressLine1}<br />{siteConfig.addressLine2}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

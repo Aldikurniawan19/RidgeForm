@@ -1,0 +1,297 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TestimonialsSection from '../components/TestimonialsSection.astro';
+import FaqSection from '../components/FaqSection.astro';
+import CtaSection from '../components/CtaSection.astro';
+import Icons from '../components/Icons.astro';
+import type { IconName } from '../data/icons';
+import { journeyMilestones, teamMembers } from '../data/company';
+import { siteConfig } from '../data/site';
+
+const values: { icon: IconName; title: string; summary: string }[] = [
+  {
+    icon: 'heart-handshake',
+    title: 'Candid Inspection Advice',
+    summary: 'Honest diagnostics, line-item quotes, and recommending repair whenever full replacement is unnecessary.',
+  },
+  {
+    icon: 'award',
+    title: 'Material Discipline',
+    summary: 'Tested alloy gauges, concealed clips, and synthetic breather membranes built for multi-decade loads.',
+  },
+  {
+    icon: 'shield-check',
+    title: 'Zero-Shortcut Safety',
+    summary: 'Fall-arrest harnessing, harness anchor inspections, and magnetic nail sweeps keep people and property safe.',
+  },
+  {
+    icon: 'compass',
+    title: 'Direct Accountability',
+    summary: 'Dedicated project leads stay in communication with owners from tear-off day to warranty handover.',
+  },
+];
+---
+<BaseLayout
+  title={`About Us || ${siteConfig.legalName}`}
+  description={`Discover how ${siteConfig.brandName} grew into a trusted residential and commercial roofing engineering team.`}
+  canonicalPath="/about/"
+>
+  <section class="rf-page-hero">
+    <img src="/images/photos/about-hero.jpg" alt="Modern sloped roof hillside architecture" class="rf-hero-bg" loading="eager" />
+    <div class="rf-hero-overlay" aria-hidden="true"></div>
+    <div class="rf-container" style="position: relative; z-index: 2;">
+      <div class="rf-hero-grid">
+        <div class="rf-hero-left">
+          <div data-reveal class="rf-kicker rf-kicker-pill">
+            <span class="rf-kicker-dot"></span>
+            <span>{siteConfig.heroKicker}</span>
+          </div>
+          <h1 data-reveal data-delay="80" class="rf-h1">
+            Engineered With Care. Trusted Across Generations.
+          </h1>
+        </div>
+        <div style="max-width: 22rem;">
+          <p data-reveal data-delay="160" class="rf-lead" style="color: rgba(255,255,255,0.86);">
+            For over 15 years, {siteConfig.brandName} has delivered transparent roofing systems for residential families and commercial estates.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rf-section">
+    <div class="rf-container">
+      <div data-reveal class="rf-about-top">
+        <div class="rf-kicker">
+          <span class="rf-kicker-dot"></span>
+          <span>OUR STORY</span>
+        </div>
+        <h2 class="rf-about-statement">
+          Established in 2009 to raise the standard of workmanship and transparency in structural roofing, {siteConfig.brandName} has evolved from a neighborhood installation crew into an end-to-end envelope specialist serving homeowners, retail operators, and general contractors.
+        </h2>
+      </div>
+
+      <div class="rf-story-grid">
+        <div data-reveal data-delay="80" class="rf-story-photo">
+          <img src="/images/photos/roofer-measuring.jpg" alt="Specialist measuring roof tiles precisely" loading="lazy" />
+        </div>
+        <div data-reveal data-delay="160" class="rf-story-stat-card">
+          <img src="/images/photos/expertise-metal.jpg" alt="Metal roof construction close-up" loading="lazy" />
+          <div class="rf-story-stat-inner">
+            <div class="rf-story-icon-badge">
+              <Icons name="home" size={24} />
+            </div>
+            <div>
+              <div class="rf-stat-value" style="color: #fff;" data-counter="98%">98%</div>
+              <p class="rf-lead" style="color: rgba(255,255,255,0.88); margin-top: 0.4rem;">
+                Client satisfaction across verified installations
+              </p>
+            </div>
+          </div>
+        </div>
+        <div data-reveal data-delay="240" class="rf-story-photo">
+          <img src="/images/photos/roofer-crew.jpg" alt="Roofing team collaborating on battens" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rf-section rf-section-stone">
+    <div class="rf-container">
+      <div class="rf-section-header">
+        <div class="rf-section-header-main">
+          <div data-reveal class="rf-kicker">
+            <span class="rf-kicker-dot"></span>
+            <span>OUR MILESTONES</span>
+          </div>
+          <h2 data-reveal data-delay="80" class="rf-h2">Built Year by Year, Roof by Roof.</h2>
+        </div>
+        <div data-reveal data-delay="160" class="rf-section-header-aside">
+          <p class="rf-lead">Steady growth anchored by certified craftsmanship and field discipline.</p>
+        </div>
+      </div>
+
+      <div class="rf-journey-layout">
+        <aside class="rf-journey-nav">
+          <p class="rf-small" style="color: var(--color-accent-hover); font-weight: 600;">Timeline</p>
+          {journeyMilestones.map((item) => (
+            <a href={`#${item.id}`} class="rf-journey-link">
+              <span>•</span>
+              <span>{item.year}</span>
+            </a>
+          ))}
+        </aside>
+
+        <div class="rf-journey-items">
+          {journeyMilestones.map((item) => (
+            <article id={item.id} data-reveal class="rf-journey-row">
+              <img src={item.image} alt={`Milestone ${item.year}`} loading="lazy" />
+              <div>
+                <h3 class="rf-h1" style="color: var(--color-ink); margin-bottom: 0.85rem;">{item.year}</h3>
+                <p class="rf-lead">{item.text}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rf-section rf-section-dark">
+    <div class="rf-container">
+      <div class="rf-section-header-center">
+        <div data-reveal class="rf-kicker rf-kicker-light">
+          <span class="rf-kicker-dot"></span>
+          <span>PURPOSE &amp; DIRECTION</span>
+        </div>
+        <h2 data-reveal data-delay="80" class="rf-h2">
+          Protecting Structures. Earning Long-Term Trust.
+        </h2>
+      </div>
+
+      <div class="rf-purpose-grid">
+        <article data-reveal class="rf-purpose-card">
+          <img src="/images/photos/work-commercial.jpg" alt="Modern commercial roof building" loading="lazy" />
+          <div class="rf-purpose-body">
+            <h3 class="rf-h4">Our Vision</h3>
+            <p>
+              To be the benchmark architectural roofing partner known for transparent inspections, low-maintenance metal craftsmanship, and climate-ready durability.
+            </p>
+          </div>
+        </article>
+        <article data-reveal data-delay="120" class="rf-purpose-card">
+          <img src="/images/photos/roofer-measuring.jpg" alt="Precision construction specialist measuring materials" loading="lazy" />
+          <div class="rf-purpose-body">
+            <h3 class="rf-h4">Our Mission</h3>
+            <p>
+              To protect residential homes and commercial enterprises with clean installation discipline, code-exceeding substrates, and attentive responsive care.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="rf-section">
+    <div class="rf-container">
+      <div class="rf-values-layout">
+        <div class="rf-faq-sticky">
+          <div data-reveal class="rf-kicker">
+            <span class="rf-kicker-dot"></span>
+            <span>CORE VALUES</span>
+          </div>
+          <h2 data-reveal data-delay="80" class="rf-h2">Principles Behind Every Fastener.</h2>
+          <p data-reveal data-delay="160" style="margin-top: 1rem;">
+            Clear commitments that govern every site survey, estimate, and weatherproofing pass.
+          </p>
+          <div data-reveal data-delay="220" style="margin-top: 1.75rem;">
+            <a href="/contact" class="rf-btn rf-btn-primary rf-btn-primary-dark">
+              <span>Request a Quote</span>
+              <Icons name="arrow-right" size={16} />
+            </a>
+          </div>
+        </div>
+
+        <div class="rf-values-grid">
+          {values.map((val, idx) => (
+            <article data-reveal data-delay={String(idx * 70)} class="rf-why-card">
+              <div class="rf-icon-box">
+                <Icons name={val.icon} size={22} />
+              </div>
+              <div>
+                <h3 class="rf-h5" style="margin-bottom: 0.5rem;">{val.title}</h3>
+                <p>{val.summary}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rf-section rf-section-stone">
+    <div class="rf-container">
+      <div class="rf-section-header">
+        <div class="rf-section-header-main">
+          <div data-reveal class="rf-kicker">
+            <span class="rf-kicker-dot"></span>
+            <span>LEADERSHIP TEAM</span>
+          </div>
+          <h2 data-reveal data-delay="80" class="rf-h2">
+            The Specialists Guiding Every Property
+          </h2>
+        </div>
+      </div>
+
+      <div class="rf-team-desktop">
+        <div class="rf-team-grid">
+          {teamMembers.map((member, idx) => (
+            <article data-reveal data-delay={String((idx % 3) * 80)} class="rf-team-card">
+              <img src={member.image} alt={member.name} loading="lazy" />
+              <div class="rf-team-overlay-card">
+                <div>
+                  <h3 class="rf-h5">{member.name}</h3>
+                  <p class="rf-small" style="margin-top: 0.2rem;">{member.role}</p>
+                </div>
+                <a
+                  href="https://linkedin.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${member.name} on LinkedIn`}
+                  class="rf-social-btn"
+                  style="background: var(--color-surface); border-color: var(--color-border-light); color: var(--color-ink);"
+                >
+                  <Icons name="linkedin" size={15} />
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <div class="rf-team-mobile">
+        <div class="rf-carousel" data-carousel>
+          <div class="rf-carousel-viewport">
+            <div class="rf-carousel-track" data-carousel-track>
+              {teamMembers.map((member) => (
+                <div class="rf-carousel-slide" data-carousel-slide>
+                  <article class="rf-team-card">
+                    <img src={member.image} alt={member.name} loading="lazy" />
+                    <div class="rf-team-overlay-card">
+                      <div>
+                        <h3 class="rf-h5">{member.name}</h3>
+                        <p class="rf-small" style="margin-top: 0.2rem;">{member.role}</p>
+                      </div>
+                      <a
+                        href="https://linkedin.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${member.name} on LinkedIn`}
+                        class="rf-social-btn"
+                        style="background: var(--color-surface); border-color: var(--color-border-light); color: var(--color-ink);"
+                      >
+                        <Icons name="linkedin" size={15} />
+                      </a>
+                    </div>
+                  </article>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div class="rf-carousel-controls">
+            <button type="button" class="rf-circle-nav" data-carousel-prev aria-label="Previous team member">
+              <Icons name="arrow-left" size={18} />
+            </button>
+            <button type="button" class="rf-circle-nav" data-carousel-next aria-label="Next team member">
+              <Icons name="arrow-right" size={18} />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <TestimonialsSection />
+  <FaqSection />
+  <CtaSection />
+</BaseLayout>

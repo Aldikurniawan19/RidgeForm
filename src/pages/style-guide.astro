@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaSection from '../components/CtaSection.astro';
+import Icons from '../components/Icons.astro';
+import { siteConfig } from '../data/site';
+
+const swatches = [
+  { name: 'Obsidian Ink', hex: '#0C0D10', bg: '#0c0d10', border: 'transparent' },
+  { name: 'Terracotta Ember', hex: '#EB6B2D', bg: '#eb6b2d', border: 'transparent' },
+  { name: 'Slate Muted', hex: '#5A5D66', bg: '#5a5d66', border: 'transparent' },
+  { name: 'Warm Stone', hex: '#F7F6F2', bg: '#f7f6f2', border: '#e2dfd7' },
+];
+---
+<BaseLayout
+  title={`Style Guide || ${siteConfig.legalName}`}
+  canonicalPath="/style-guide/"
+>
+  <section class="rf-page-hero rf-page-hero-compact rf-section-dark">
+    <div class="rf-container">
+      <div class="rf-hero-grid">
+        <div class="rf-hero-left">
+          <div class="rf-kicker rf-kicker-pill">
+            <span class="rf-kicker-dot"></span>
+            <span>DESIGN SYSTEM</span>
+          </div>
+          <h1 class="rf-h1">{siteConfig.brandName} UI Foundation</h1>
+        </div>
+        <div style="max-width: 24rem;">
+          <p class="rf-lead" style="color: var(--color-text-light-muted);">
+            Color tokens, open-source typography scales, buttons, and UI components.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rf-section">
+    <div class="rf-container">
+      <div class="rf-faq-layout" style="grid-template-columns: 16rem 1fr;">
+        <div style="display: flex; align-items: center; gap: 0.6rem; color: var(--color-ink); font-weight: 600;">
+          <Icons name="palette" size={20} />
+          <span>Color Palette</span>
+        </div>
+
+        <div class="rf-four-grid">
+          {swatches.map((s) => (
+            <div>
+              <div style={`height: 7rem; border-radius: 0.75rem; background: ${s.bg}; border: 1px solid ${s.border};`}></div>
+              <p class="rf-h5" style="margin-top: 0.75rem;">{s.name}</p>
+              <code class="rf-small">{s.hex}</code>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="rf-faq-layout" style="grid-template-columns: 16rem 1fr; margin-top: 4rem; padding-top: 3.5rem; border-top: 1px solid var(--color-border-light);">
+        <div style="display: flex; align-items: center; gap: 0.6rem; color: var(--color-ink); font-weight: 600;">
+          <Icons name="type" size={20} />
+          <span>Typography (SIL OFL)</span>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 2rem;">
+          <div>
+            <h1 class="rf-h1" style="color: var(--color-ink);">Heading 1 · Plus Jakarta Sans</h1>
+            <p class="rf-small" style="margin-top: 0.35rem;">SemiBold 600 · Responsive fluid scale</p>
+          </div>
+          <div>
+            <h2 class="rf-h2">Heading 2 · Plus Jakarta Sans</h2>
+            <p class="rf-small" style="margin-top: 0.35rem;">Section Headers</p>
+          </div>
+          <div>
+            <h3 class="rf-h3">Heading 3 · Plus Jakarta Sans</h3>
+            <p class="rf-small" style="margin-top: 0.35rem;">Subsection Headers</p>
+          </div>
+          <div>
+            <p class="rf-lead">
+              Body Copy (Manrope Regular/Medium) — Architectural roofing documentation and customer guarantees remain crisp and legible across desktop and mobile devices.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="rf-faq-layout" style="grid-template-columns: 16rem 1fr; margin-top: 4rem; padding-top: 3.5rem; border-top: 1px solid var(--color-border-light);">
+        <div style="display: flex; align-items: center; gap: 0.6rem; color: var(--color-ink); font-weight: 600;">
+          <Icons name="bolt" size={20} />
+          <span>Buttons</span>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+          <a href="/contact" class="rf-btn rf-btn-primary rf-btn-primary-dark">
+            <span>Primary Button</span>
+            <Icons name="arrow-right" size={16} />
+          </a>
+          <a href="/about" class="rf-btn rf-btn-dark">
+            <span>Dark Button</span>
+            <Icons name="arrow-right" size={16} />
+          </a>
+          <div style="padding: 0.75rem; border-radius: 9999px; background: var(--color-dark);">
+            <a href="/portfolio" class="rf-btn rf-btn-outline-light">
+              <span>Outline Light</span>
+              <Icons name="arrow-right" size={16} />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaSection />
+</BaseLayout>

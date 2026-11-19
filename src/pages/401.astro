@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icons from '../components/Icons.astro';
+import { siteConfig } from '../data/site';
+---
+<BaseLayout
+  title={`Protected Area || ${siteConfig.legalName}`}
+  canonicalPath="/401/"
+  hideChrome={true}
+>
+  <main style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem;">
+    <div class="rf-utility-box" style="text-align: left; width: 100%; max-width: 32rem;" data-form-wrapper>
+      <div class="rf-icon-box" style="margin-bottom: 1.5rem;">
+        <Icons name="lock" size={22} />
+      </div>
+      <h1 class="rf-h2">Protected Document</h1>
+      <p style="margin-top: 0.75rem; margin-bottom: 1.5rem;">
+        This client handover packet requires an access passcode provided by your project coordinator.
+      </p>
+
+      <form data-static-form data-form-mode="password">
+        <div class="rf-field">
+          <label for="pass">Access Passcode</label>
+          <input
+            id="pass"
+            name="pass"
+            type="password"
+            placeholder="Enter project passcode"
+            required
+            class="rf-input"
+            autocomplete="current-password"
+          />
+        </div>
+        <button type="submit" class="rf-btn rf-btn-primary rf-btn-primary-dark" style="width: 100%;">
+          <span>Unlock Packet</span>
+          <Icons name="arrow-right" size={16} />
+        </button>
+      </form>
+
+      <div data-form-error hidden class="rf-error-banner">
+        Incorrect passcode. Contact our support desk for your project credentials.
+      </div>
+
+      <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--color-border-light); display: flex; justify-content: space-between; align-items: center;">
+        <a href="/" class="rf-small" style="font-weight: 600;">← Back to Home</a>
+        <a href="/contact" class="rf-small" style="font-weight: 600; color: var(--color-accent-hover);">Contact Support</a>
+      </div>
+    </div>
+  </main>
+</BaseLayout>

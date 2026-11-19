@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaSection from '../components/CtaSection.astro';
+import Icons from '../components/Icons.astro';
+import { services } from '../data/services';
+import { siteConfig } from '../data/site';
+---
+<BaseLayout
+  title={`Services || ${siteConfig.legalName}`}
+  description="Explore commercial, industrial, retail, and residential metal and waterproofing roofing services."
+  canonicalPath="/portfolio/"
+>
+  <section class="rf-page-hero">
+    <img src="/images/photos/service-commercial.jpg" alt="Modern commercial building roof structure" class="rf-hero-bg" loading="eager" />
+    <div class="rf-hero-overlay" aria-hidden="true"></div>
+    <div class="rf-container" style="position: relative; z-index: 2;">
+      <div class="rf-hero-grid">
+        <div class="rf-hero-left">
+          <div data-reveal class="rf-kicker rf-kicker-pill">
+            <span class="rf-kicker-dot"></span>
+            <span>OUR SERVICES</span>
+          </div>
+          <h1 data-reveal data-delay="80" class="rf-h1">
+            Complete Roofing Engineering Under One Roof.
+          </h1>
+        </div>
+        <div style="max-width: 22rem;">
+          <p data-reveal data-delay="160" class="rf-lead" style="color: rgba(255,255,255,0.86);">
+            Turnkey inspections, architectural metal fabrication, and low-slope membranes across residential and industrial sites.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rf-section">
+    <div class="rf-container">
+      <div style="display: flex; flex-direction: column; gap: 4.5rem;">
+        {services.map((service) => (
+          <article data-reveal class="rf-service-card">
+            <div class="rf-service-meta">
+              <p class="rf-service-index">
+                {service.number}<span>/{service.total}</span>
+              </p>
+              <a href={`/services/${service.slug}`} class="rf-service-title-link">
+                <h2 class="rf-h4">{service.title}</h2>
+              </a>
+            </div>
+
+            <div class="rf-service-media">
+              <img src={service.image} alt={service.title} loading="lazy" />
+              <div class="rf-service-stat">
+                <div class="rf-service-stat-num" data-counter={service.statNumber}>
+                  {service.statNumber}
+                </div>
+                <p class="rf-small" style="color: var(--color-ink); font-weight: 500;">
+                  {service.statLabel}
+                </p>
+              </div>
+            </div>
+
+            <div class="rf-service-body">
+              <p class="rf-service-summary">{service.summary}</p>
+              <div>
+                <p class="rf-highlights-title">Key Capabilities</p>
+                <ul class="rf-highlights-list">
+                  {service.highlights.map((item) => (
+                    <li>
+                      <Icons name="check-star" size={14} />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <a href={`/services/${service.slug}`} class="rf-btn rf-btn-primary rf-btn-primary-dark">
+                  <span>View Service</span>
+                  <Icons name="arrow-right" size={16} />
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaSection />
+</BaseLayout>

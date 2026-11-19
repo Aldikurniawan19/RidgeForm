@@ -1,0 +1,54 @@
+---
+import type { PartnerItem } from '../data/site';
+
+interface Props {
+  partner: PartnerItem;
+}
+
+const { partner } = Astro.props;
+---
+<div class="rf-partner-mark" aria-label={partner.name}>
+  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    {partner.markType === 'beam' && (
+      <g stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 7H23M5 21H23M14 7V21M8 7L20 21" />
+      </g>
+    )}
+    {partner.markType === 'ridge' && (
+      <g stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 18L14 7L25 18" />
+        <path d="M7 22L14 15L21 22" stroke="#EB6B2D" />
+      </g>
+    )}
+    {partner.markType === 'shield' && (
+      <g stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 3L23 7V14C23 19.5 19.2 23.8 14 25C8.8 23.8 5 19.5 5 14V7L14 3Z" />
+        <path d="M10.5 14L13 16.5L17.5 11.5" stroke="#EB6B2D" />
+      </g>
+    )}
+    {partner.markType === 'grid' && (
+      <g stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="4" width="8" height="8" rx="1.5" />
+        <rect x="16" y="4" width="8" height="8" rx="1.5" stroke="#EB6B2D" />
+        <rect x="4" y="16" width="8" height="8" rx="1.5" />
+        <rect x="16" y="16" width="8" height="8" rx="1.5" />
+      </g>
+    )}
+    {partner.markType === 'hex' && (
+      <g stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="14,3 23.5,8.5 23.5,19.5 14,25 4.5,19.5 4.5,8.5" />
+        <circle cx="14" cy="14" r="3" fill="#EB6B2D" stroke="none" />
+      </g>
+    )}
+    {partner.markType === 'arch' && (
+      <g stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 22V13C5 8.02944 9.02944 4 14 4C18.9706 4 23 8.02944 23 13V22" />
+        <path d="M10 22V14C10 11.7909 11.7909 10 14 10C16.2091 10 18 11.7909 18 14V22" stroke="#EB6B2D" />
+      </g>
+    )}
+  </svg>
+  <div class="rf-partner-meta">
+    <span class="rf-partner-name">{partner.name}</span>
+    <span class="rf-partner-tag">{partner.tagline}</span>
+  </div>
+</div>

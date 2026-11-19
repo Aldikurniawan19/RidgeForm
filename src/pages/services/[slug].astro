@@ -1,0 +1,158 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProcessSection from '../../components/ProcessSection.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import CtaSection from '../../components/CtaSection.astro';
+import Icons from '../../components/Icons.astro';
+import { services, type ServiceItem } from '../../data/services';
+import { siteConfig } from '../../data/site';
+
+export function getStaticPaths() {
+  return services.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+interface Props {
+  service: ServiceItem;
+}
+
+const { service } = Astro.props;
+const previewImages = [
+  service.image,
+  '/images/photos/roofer-measuring.jpg',
+  '/images/photos/expertise-metal.jpg',
+];
+---
+<BaseLayout
+  title={`${service.title} || ${siteConfig.legalName}`}
+  description={service.summary}
+  canonicalPath={`/services/${service.slug}/`}
+>
+  <section class="rf-page-hero">
+    <img src={service.image} alt={service.title} class="rf-hero-bg" loading="eager" />
+    <div class="rf-hero-overlay" aria-hidden="true"></div>
+    <div class="rf-container" style="position: relative; z-index: 2;">
+      <div class="rf-hero-grid">
+        <div class="rf-hero-left">
+          <div data-reveal class="rf-kicker rf-kicker-pill">
+            <span class="rf-kicker-dot"></span>
+            <span>SERVICE OVERVIEW</span>
+          </div>
+          <h1 data-reveal data-delay="80" class="rf-h1">{service.title}</h1>
+        </div>
+        <div style="max-width: 24rem;">
+          <p data-reveal data-delay="160" class="rf-lead" style="color: rgba(255,255,255,0.88);">
+            {service.summary}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rf-section">
+    <div class="rf-container">
+      <div style="text-align: center; max-width: 56rem; margin-inline: auto;">
+        <div data-reveal class="rf-kicker">
+          <span class="rf-kicker-dot"></span>
+          <span>SYSTEM CAPABILITIES</span>
+        </div>
+        <h2 data-reveal data-delay="80" class="rf-h3">{service.overviewHeading}</h2>
+      </div>
+
+      <div class="rf-story-grid" style="margin-top: 3rem;">
+        {previewImages.map((src, idx) => (
+          <div data-reveal data-delay={String(idx * 80)} class="rf-story-photo" style="min-height: 17rem;">
+            <img src={src} alt={`${service.title} showcase ${idx + 1}`} loading="lazy" />
+          </div>
+        ))}
+      </div>
+
+      <div style="text-align: center; margin-top: 2.5rem;">
+        <p style="max-width: 34rem; margin-inline: auto;">{service.overviewNote}</p>
+        <div style="margin-top: 1.5rem;">
+          <a href="/contact" class="rf-btn rf-btn-primary rf-btn-primary-dark">
+            <span>Request Assessment</span>
+            <Icons name="arrow-right" size={16} />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rf-section rf-section-stone">
+    <div class="rf-container">
+      <div class="rf-two-col-sticky">
+        <div class="rf-faq-sticky">
+          <div data-reveal class="rf-kicker">
+            <span class="rf-kicker-dot"></span>
+            <span>INCLUDED SCOPE</span>
+          </div>
+          <h2 data-reveal data-delay="80" class="rf-h2">
+            What’s Covered in {service.title}
+          </h2>
+          <p data-reveal data-delay="160" class="rf-lead" style="margin-top: 1rem;">
+            Structured execution covering substrates, moisture barriers, flashing geometry, and follow-up support.
+          </p>
+          <div data-reveal data-delay="220" style="margin-top: 1.5rem;">
+            <a href="/contact" class="rf-btn rf-btn-primary rf-btn-primary-dark">
+              <span>Book Site Visit</span>
+              <Icons name="arrow-right" size={16} />
+            </a>
+          </div>
+          <div data-reveal data-delay="260" style="margin-top: 2rem; border-radius: var(--radius-sm); overflow: hidden;">
+            <img src="/images/photos/roofer-crew.jpg" alt="Roofing team installation crew" loading="lazy" />
+          </div>
+        </div>
+
+        <div class="rf-solution-cards">
+          {service.solutions.map((sol, idx) => (
+            <article data-reveal data-delay={String(idx * 70)} class="rf-solution-card">
+              <div class="rf-icon-box" style="margin-bottom: 1.15rem;">
+                <Icons name={sol.icon} size={20} />
+              </div>
+              <h3 class="rf-h5" style="margin-bottom: 0.45rem;">{sol.title}</h3>
+              <p>{sol.description}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rf-section rf-section-dark">
+    <div class="rf-container">
+      <div class="rf-section-header">
+        <div class="rf-section-header-main">
+          <div data-reveal class="rf-kicker rf-kicker-light">
+            <span class="rf-kicker-dot"></span>
+            <span>SPECIFIED SYSTEMS</span>
+          </div>
+          <h2 data-reveal data-delay="80" class="rf-h2">Engineered Material Options</h2>
+        </div>
+        <div data-reveal data-delay="160" class="rf-section-header-aside">
+          <p class="rf-lead" style="color: var(--color-text-light-muted);">
+            Selected to match roof slope, climate wind zones, and architectural finish targets.
+          </p>
+        </div>
+      </div>
+
+      <div class="rf-four-grid">
+        {service.materials.map((mat, idx) => (
+          <article data-reveal data-delay={String(idx * 70)} class="rf-dark-feature-card">
+            <div class="rf-icon-box" style="background: var(--color-accent); color: var(--color-accent-ink); margin-bottom: 2.5rem;">
+              <Icons name={mat.icon} size={20} />
+            </div>
+            <h3 class="rf-h5" style="color: #fff; margin-bottom: 0.45rem;">{mat.title}</h3>
+            <p class="rf-small" style="color: var(--color-text-light-muted);">{mat.description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ProcessSection />
+  <FaqSection />
+  <CtaSection />
+</BaseLayout>

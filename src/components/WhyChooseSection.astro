@@ -1,0 +1,31 @@
+---
+import Icons from './Icons.astro';
+import { whyChooseCards } from '../data/company';
+---
+<section class="rf-section rf-section-stone">
+  <div class="rf-container">
+    <div class="rf-section-header-center">
+      <div data-reveal class="rf-kicker">
+        <span class="rf-kicker-dot"></span>
+        <span>WHY RIDGEFORM</span>
+      </div>
+      <h2 data-split-reveal class="rf-h2">
+        Why Property Owners Trust Protection That Endures
+      </h2>
+    </div>
+
+    <div class="rf-why-grid">
+      {whyChooseCards.map((card, idx) => (
+        <article data-reveal data-delay={String((idx % 3) * 80)} class="rf-why-card">
+          <div class="rf-icon-box">
+            <Icons name={card.icon} size={22} />
+          </div>
+          <div>
+            <h3 class="rf-h5" style="margin-bottom: 0.55rem;">{card.title}</h3>
+            <p>{card.summary}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

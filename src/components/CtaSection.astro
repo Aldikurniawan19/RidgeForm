@@ -1,0 +1,39 @@
+---
+import Icons from './Icons.astro';
+
+interface Props {
+  topPadding?: boolean;
+}
+
+const { topPadding = false } = Astro.props;
+---
+<section class:list={['rf-section', { 'rf-section-pt-0': !topPadding }]}>
+  <div class="rf-container">
+    <div class="rf-cta-card">
+      <img
+        src="/images/photos/cta-roof.jpg"
+        alt="Terracotta architectural roof tile detail"
+        loading="lazy"
+        class="rf-cta-bg"
+      />
+      <div class="rf-cta-body">
+        <div data-reveal class="rf-kicker rf-kicker-pill-dark">
+          <span class="rf-kicker-dot"></span>
+          <span>BOOK AN ASSESSMENT</span>
+        </div>
+        <h2 data-split-reveal class="rf-h2">
+          Your Roof Shouldn’t Wait for the Next Storm.
+        </h2>
+        <p data-reveal data-delay="160" class="rf-lead rf-cta-summary">
+          Protect your property with clear thermal inspections, honest repair options, and standing-seam workmanship built to endure.
+        </p>
+      </div>
+      <div data-reveal data-delay="220" class="rf-cta-action">
+        <a href="/contact" class="rf-btn rf-btn-secondary rf-btn-primary-dark">
+          <span>Schedule Free Inspection</span>
+          <Icons name="arrow-right" size={16} />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

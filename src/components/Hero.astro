@@ -1,0 +1,66 @@
+---
+import Icons from './Icons.astro';
+import { heroData } from '../data/company';
+import { siteConfig } from '../data/site';
+---
+<section class="rf-hero">
+  <img
+    src="/images/photos/hero-roof.jpg"
+    alt="Contemporary architectural home featuring sleek dark metal roofing at dusk"
+    class="rf-hero-bg"
+    loading="eager"
+  />
+  <div class="rf-hero-overlay" aria-hidden="true"></div>
+
+  <div class="rf-container">
+    <div class="rf-hero-grid">
+      <div class="rf-hero-left">
+        <div data-reveal data-delay="0" class="rf-kicker rf-kicker-pill">
+          <span class="rf-kicker-dot"></span>
+          <span>{siteConfig.heroKicker}</span>
+        </div>
+
+        <h1 data-split-reveal class="rf-h1">
+          {heroData.headline}
+        </h1>
+
+        <p data-reveal data-delay="160" class="rf-lead rf-hero-summary">
+          {heroData.summary}
+        </p>
+
+        <div data-reveal data-delay="240" class="rf-hero-cta">
+          <a href={heroData.ctaHref} class="rf-btn rf-btn-primary">
+            <span>{heroData.ctaLabel}</span>
+            <Icons name="arrow-right" size={16} />
+          </a>
+        </div>
+      </div>
+
+      <aside data-reveal data-delay="300" class="rf-hero-card">
+        <div class="rf-hero-thumbs">
+          {heroData.spotlight.images.map((img, idx) => (
+            <img
+              src={img.src}
+              alt={img.alt}
+              loading="eager"
+              data-hero-thumb
+              class:list={['rf-hero-thumb', { 'is-active': idx === 0 }]}
+            />
+          ))}
+        </div>
+        <div class="rf-hero-card-body">
+          <div>
+            <h2 class="rf-hero-card-title">{heroData.spotlight.title}</h2>
+            <p class="rf-hero-card-copy">{heroData.spotlight.text}</p>
+          </div>
+          <a href={heroData.spotlight.linkHref} class="rf-hero-card-link">
+            <span>{heroData.spotlight.linkLabel}</span>
+            <span class="rf-hero-card-link-icon">
+              <Icons name="arrow-right" size={13} />
+            </span>
+          </a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>

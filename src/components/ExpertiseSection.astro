@@ -1,0 +1,68 @@
+---
+import Icons from './Icons.astro';
+import { expertiseItems } from '../data/company';
+---
+<section class="rf-section rf-section-dark">
+  <div class="rf-container">
+    <div class="rf-section-header">
+      <div class="rf-section-header-main">
+        <div data-reveal class="rf-kicker rf-kicker-light">
+          <span class="rf-kicker-dot"></span>
+          <span>OUR EXPERTISE</span>
+        </div>
+        <h2 data-split-reveal class="rf-h2">
+          Metal Roofing Experts. Structural Protection Masters.
+        </h2>
+      </div>
+      <div data-reveal data-delay="160" class="rf-section-header-aside">
+        <p class="rf-lead" style="color: var(--color-text-light-muted);">
+          Precision-installed metal and membrane systems tested against heavy storms and solar heat.
+        </p>
+      </div>
+    </div>
+
+    <div class="rf-expertise-list">
+      {expertiseItems.map((item, idx) => (
+        <div
+          data-reveal
+          data-delay={String(idx * 70)}
+          data-accordion-item
+          class:list={['rf-expertise-item', { 'is-active': idx === 0 }]}
+        >
+          <button
+            type="button"
+            class="rf-expertise-trigger"
+            data-accordion-trigger
+            aria-expanded={idx === 0 ? 'true' : 'false'}
+          >
+            <div class="rf-expertise-head">
+              <span class="rf-expertise-num">{item.number}</span>
+              <h3 class="rf-h4 rf-expertise-title">{item.title}</h3>
+            </div>
+            <div class="rf-expertise-right">
+              <p class="rf-expertise-summary">{item.summary}</p>
+              <span class="rf-expertise-toggle" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+              </span>
+            </div>
+          </button>
+
+          <div class="rf-accordion-panel">
+            <div class="rf-accordion-inner">
+              <div class="rf-expertise-preview">
+                <img src={item.image} alt={item.alt} loading="lazy" class="rf-expertise-img" />
+                <a href="/portfolio" class="rf-btn rf-btn-outline-light">
+                  <span>View Details</span>
+                  <Icons name="arrow-right" size={15} />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

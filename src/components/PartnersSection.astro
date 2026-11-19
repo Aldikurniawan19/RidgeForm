@@ -1,0 +1,49 @@
+---
+import Icons from './Icons.astro';
+import PartnerMark from './PartnerMark.astro';
+import { partners } from '../data/site';
+---
+<section class="rf-section rf-section-stone">
+  <div class="rf-container">
+    <div class="rf-partners-top">
+      <div class="rf-partners-intro">
+        <h2 data-reveal class="rf-h3">
+          Built With Certified Structural Alloys &amp; Proven Roofing Partners
+        </h2>
+        <a data-reveal data-delay="120" href="/contact" class="rf-btn rf-btn-primary rf-btn-primary-dark">
+          <span>Request Free Inspection</span>
+          <Icons name="arrow-right" size={16} />
+        </a>
+      </div>
+
+      <div data-reveal data-delay="180" class="rf-response-card">
+        <img
+          src="/images/photos/roofer-measuring.jpg"
+          alt="Roofing specialist measuring precision tiles on site"
+          loading="lazy"
+          class="rf-response-bg"
+        />
+        <div class="rf-response-overlay" aria-hidden="true"></div>
+        <div class="rf-response-content">
+          <div class="rf-response-icon">
+            <Icons name="clock" size={24} />
+          </div>
+          <div class="rf-response-bottom">
+            <p class="rf-h5" style="max-width: 11rem;">Fastest Dispatch Response</p>
+            <div class="rf-response-num">
+              <span data-counter="15">15</span><span style="font-size: 1.5rem;">m</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rf-partners-grid">
+      {partners.map((partner, idx) => (
+        <div data-reveal data-delay={String((idx % 6) * 60)} class="rf-partner-tile">
+          <PartnerMark partner={partner} />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
